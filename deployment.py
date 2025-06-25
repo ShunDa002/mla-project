@@ -26,7 +26,7 @@ def user_input_features():
     active = st.sidebar.slider("Physical Activity (0=No, 1=Yes)", min_value=0, max_value=1, value=1)
     
     data = {
-        "Age": age*365,
+        "Age": age,
         "Height": height,
         "Weight": weight,
         "Gender": gender,
@@ -70,6 +70,7 @@ x_fbest = f_selector.fit_transform(x_train, y_train)
 lr_clf_fbest = LogisticRegression(random_state=42)
 lr_clf_fbest.fit(x_fbest, y_train)
 
+user_inputs["Age"] = user_inputs["Age"] * 365
 # Apply the same preprocessing to user input
 user_inputs_scaled = scaler.transform(user_inputs)
 user_inputs_selected = f_selector.transform(user_inputs_scaled)
